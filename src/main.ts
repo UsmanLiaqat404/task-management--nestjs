@@ -2,9 +2,8 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 
 async function bootstrap() {
-  const port = '3000';
   const app = await NestFactory.create(AppModule);
-  await app.listen(port);
-  console.log('App listen on port: ' + port);
+  await app.listen(process.env.PORT || 3000, '0.0.0.0' as any);
+  console.log(`Application is running on: ${await app.getUrl()}`);
 }
 bootstrap();
